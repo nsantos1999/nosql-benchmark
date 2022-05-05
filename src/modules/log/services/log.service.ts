@@ -13,9 +13,15 @@ export class LogService {
   testCreate(createLogDto: CreateLogDto) {
     return this.logRepository.create(createLogDto);
   }
+  testBulkInsert(createLogsDto: CreateLogDto[]) {
+    return this.logRepository.bulkInsert(createLogsDto);
+  }
 
   async testFindAll() {
-    await this.logRepository.findAll();
-    return;
+    return this.logRepository.findAll();
+  }
+
+  async count() {
+    return this.logRepository.count();
   }
 }

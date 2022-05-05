@@ -15,7 +15,16 @@ export class LogMongoDbRepository implements LogRespository {
   }
 
   async findAll(): Promise<Log[]> {
-    return this.logModel.find({});
+    await this.logModel.find({}).limit(500000);
+    return [];
     // return this.logModel.find({}).limit(10);
+  }
+  async count(): Promise<number> {
+    return this.logModel.count();
+  }
+
+  async bulkInsert(createLogsDto: CreateLogDto[]): Promise<void> {
+    await this.logModel.insertMany(createLogsDto);
+    return;
   }
 }
